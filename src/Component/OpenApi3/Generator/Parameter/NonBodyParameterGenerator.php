@@ -153,7 +153,12 @@ class NonBodyParameterGenerator extends ParameterGenerator
             $type = implode('|', $this->convertParameterType($parameter->getSchema()));
         }
 
-        return sprintf(' *     @var %s $%s %s', $type, $parameter->getName(), $parameter->getDescription() ?: '');
+        return sprintf(
+            ' *      \'%s\': %s,%s',
+            $parameter->getName(),
+            $type,
+            $parameter->getDescription() ? ' ' . $parameter->getDescription() : ''
+        );
     }
 
     /**
